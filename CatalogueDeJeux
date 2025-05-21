@@ -375,5 +375,89 @@
             </button>
         </div>
     </div>
+
+    <script>
+        // Filter buttons functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-active'));
+                // Add active class to clicked button
+                this.classList.add('filter-active');
+                
+                // Here you would normally filter the games
+                console.log('Filtering by:', this.dataset.filter);
+            });
+        });
+
+        // Reverse search modal
+        const reverseSearchBtn = document.getElementById('reverse-search-btn');
+        const reverseSearchModal = document.getElementById('reverse-search-modal');
+        const closeReverseSearch = document.getElementById('close-reverse-search');
+        
+        reverseSearchBtn.addEventListener('click', () => {
+            reverseSearchModal.classList.remove('hidden');
+        });
+        
+        closeReverseSearch.addEventListener('click', () => {
+            reverseSearchModal.classList.add('hidden');
+        });
+
+        // QR modal
+        const qrBtn = document.getElementById('qr-btn');
+        const qrModal = document.getElementById('qr-modal');
+        const closeQrModal = document.getElementById('close-qr-modal');
+        
+        qrBtn.addEventListener('click', () => {
+            qrModal.classList.remove('hidden');
+        });
+        
+        closeQrModal.addEventListener('click', () => {
+            qrModal.classList.add('hidden');
+        });
+
+        // Quiz section
+        const quizSection = document.getElementById('quiz-section');
+        quizSection.addEventListener('click', () => {
+            alert('Redirection vers le quiz de découverte');
+        });
+
+        // Favorites button
+        const favoritesBtn = document.getElementById('favorites-btn');
+        favoritesBtn.addEventListener('click', () => {
+            alert('Affichage des jeux favoris');
+        });
+
+        // Play me buttons
+        document.querySelectorAll('.play-me-btn').forEach(btn => {
+            if (!btn.disabled) {
+                btn.addEventListener('click', function() {
+                    const gameCard = this.closest('.game-card') || this.closest('.bg-white');
+                    const gameName = gameCard.querySelector('h4').textContent;
+                    alert(`Lancement du jeu: ${gameName}`);
+                });
+            }
+        });
+
+        // Button selection in reverse search
+        document.querySelectorAll('.player-count-btn, .duration-btn, .type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Toggle selection
+                if (this.classList.contains('bg-indigo-600')) {
+                    this.classList.remove('bg-indigo-600', 'text-white');
+                    this.classList.add('bg-gray-200');
+                } else {
+                    this.classList.remove('bg-gray-200');
+                    this.classList.add('bg-indigo-600', 'text-white');
+                }
+            });
+        });
+
+        // Find game button in reverse search
+        document.getElementById('find-game-btn').addEventListener('click', function() {
+            reverseSearchModal.classList.add('hidden');
+            alert('Recherche en cours... Affichage des résultats correspondants');
+        });
+    </script>
 </body>
 </html>
